@@ -49,7 +49,7 @@ def check_json_array(json_obj, json_structure):
         objs_stru = filter(lambda x: isinstance(x, JObject), json_structure.get_keys())
         objs_json = filter(lambda x: isinstance(x, dict), json_obj)
         if not (len(objs_stru) == len(objs_json)):
-            False
+            return False
         else:
             zip_json = zip(objs_json, objs_stru)
             obj_eval = all(map(lambda x: check_json_object(x[0], x[1]), zip_json))
