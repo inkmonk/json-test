@@ -2,7 +2,8 @@ json-test
 ----------
 
 A python library for assisting you in writing tests against a JSON
-structure.
+structure. The library concentrates on the shape of the JSON structure
+rather than the actual content of it.
 
 Usage:
 ------
