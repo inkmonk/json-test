@@ -47,6 +47,25 @@ class TestJsonCheck(unittest.TestCase):
         jdic = json.loads('[{"test1":3, "test2":4}]')
         self.assertTrue(check_json_array(jdic, jobj))
 
+    def test_list_2f(self):
+        """Tests a list with object"""
+        jobj = JList({'parent': 'some', 'keys': [JObject({'parent': None, 'keys': ['test1', 'test2']})]})
+        jdic = json.loads('[{"test1":3, "test9":4}]')
+        self.assertFalse(check_json_array(jdic, jobj))
+
+    def test_list_3(self):
+        """Tests a list with object"""
+        jobj = JList({'parent': 'some', 'keys': [JObject({'parent': None, 'keys': ['test1', 'test2']})]})
+        jdic = json.loads('[{"test1":3, "test2":4},{"test1":3, "test2":4}]')
+        self.assertFalse(check_json_array(jdic, jobj))
+
+    def test_list_4(self):
+        """Tests a list with object"""
+        jobj = JList({'parent': 'some', 'keys': [JObject({'parent': None, 'keys': ['test1', 'test2']}),
+                                                 JObject({'parent': None, 'keys': ['test1', 'test2']})]})
+        jdic = json.loads('[{"test1":3, "test2":4},{"test1":3, "test2":4}]')
+        self.assertTrue(check_json_array(jdic, jobj))
+
 if __name__ == '__main__':
     json_test = unittest.TestLoader().loadTestsFromTestCase(TestJsonCheck)
     testRunner = unittest.TextTestRunner()
