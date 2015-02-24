@@ -7,7 +7,7 @@ def check_json(json_string, json_structure):
     json_structure: A value representing JSON schema.
     """
     js = json.loads(json_string)
-    # if ()
+    return check_json_object(js, json_structure)
 
 def check_json_object(json_obj, json_structure):
     """
@@ -56,8 +56,3 @@ def check_json_array(json_obj, json_structure):
             return obj_eval
     else:
         return False
-    
-# key2 = JObject({parent: 'key2', keys: ['key3']})
-# key4 = JList({parent: 'key4', keys: None)
-# key5 = JList({parent: 'key5', keys: ['key6', 'key7]})
-# json_obj = JObject({parent: None, keys: ['key1', key2, key4, key5]})
