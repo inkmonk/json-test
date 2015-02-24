@@ -22,12 +22,12 @@ class TestJsonCheck(unittest.TestCase):
         jdic = json.loads('{"status": "success", "result": "yes", "nest": {"a":1,"b":2}}')
         self.assertTrue(check_json_object(jdic, jobj))
 
-    # def test_nested_objf(self):
-    #     """Tests a nested json object"""
-    #     jobj = JObject({'parent': None, 'keys': ['status', JObject({'parent': 'nest', 'keys': ['a','b']}), 
-    #                                               'result']})
-    #     jdic = json.loads('{"status": "success", "result": "yes", "nest": {"a":1,"bc":2}}')
-    #     self.assertTrue(check_json_object(jdic, jobj))
+    def test_nested_objf(self):
+        """Tests a nested json object"""
+        jobj = JObject({'parent': None, 'keys': ['status', JObject({'parent': 'nest', 'keys': ['a','b']}), 
+                                                  'result']})
+        jdic = json.loads('{"status": "success", "result": "yes", "nest": {"a":1,"bc":2}}')
+        self.assertFalse(check_json_object(jdic, jobj))
 
 if __name__ == '__main__':
     json_test = unittest.TestLoader().loadTestsFromTestCase(TestJsonCheck)
