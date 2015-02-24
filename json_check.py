@@ -45,14 +45,17 @@ def check_json_array(json_obj, json_structure):
     json_structure: (Type JList) represents the sub part of the 
     JSON.
     """
-    objs_stru = filter(lambda x: isinstance(x, JObject), keys)
-    objs_json = filter(lambda x: isinstance(x, dict), json_obj)
-    if not (len(objs_stru) == len(objs_json)):
-        False
+    if (isinstance(json_structure, JList)):
+        objs_stru = filter(lambda x: isinstance(x, JObject), json_structure.get_keys())
+        objs_json = filter(lambda x: isinstance(x, dict), json_obj)
+        if not (len(objs_stru) == len(objs_json)):
+            False
+        else:
+            zip_json = zip(objs_json, objs_stru)
+            obj_eval = all(map(lambda x: check_json_object(x[0], x[1]), zip_json))
+            return obj_eval
     else:
-        zip_json = zip(objs_json, objs_stru)
-        obj_eval = all(map(lambda x: check_json_object(x[0], x[1]), zip_json))
-        return obj_eval
+        return False
     
 # key2 = JObject({parent: 'key2', keys: ['key3']})
 # key4 = JList({parent: 'key4', keys: None)
