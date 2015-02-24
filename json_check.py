@@ -12,7 +12,7 @@ def check_json(json_string, json_structure):
 def check_json_object(json_obj, json_structure):
     """
     json_obj: Dictionary representing JSON
-    json_structure: A value representing JSON schema
+    json_structure: (Type: JObject) A value representing JSON schema
     """
     if (isinstance(json_structure, JObject)):
         keys = json_structure.get_keys()
@@ -38,7 +38,21 @@ def check_json_object(json_obj, json_structure):
     else:
         return False
 
-
+def check_json_array(json_obj, json_structure):
+    """
+    json_obj: A list (which is a sub-part of JSON)
+    json_structure: (Type JList) represents the sub part of the 
+    JSON.
+    """
+    objs_stru = filter(lambda x: isinstance(x, JObject), keys)
+    objs_json = filter(lambda x: isinstance(x, dict), json_obj)
+    if not (len(objs_stru) == len(objs_json)):
+        False
+    else:
+        zip_json = zip(objs_json, objs_stru)
+        obj_eval = all(map(lambda x: check_json_object(x[0], x[1]), zip_json))
+        return obj_eval
+    
 # key2 = JObject({parent: 'key2', keys: ['key3']})
 # key4 = JList({parent: 'key4', keys: None)
 # key5 = JList({parent: 'key5', keys: ['key6', 'key7]})
