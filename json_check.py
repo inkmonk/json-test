@@ -7,7 +7,7 @@ def check_json(json_string, json_structure):
     json_structure: A value representing JSON schema.
     """
     js = json.loads(json_string)
-    if ()
+    # if ()
 
 def check_json_object(json_obj, json_structure):
     """
@@ -24,7 +24,7 @@ def check_json_object(json_obj, json_structure):
             key_lists = filter(lambda x: isinstance(x, JList), keys)
             parent_objs = map(lambda x: x.parent, key_objs)
             parent_list = map(lambda x: x.parent, key_lists)
-            old_keys = filter(lambda x: !isinstance(x, JObject) and !isinstance(x, JList), keys)
+            old_keys = filter(lambda x:  (not isinstance(x, JObject)) and (not isinstance(x, JList)), keys)
             base_keys = old_keys + parent_objs + parent_list
             if not (original_keys.sort() == base_keys.sort()):
                 return False
