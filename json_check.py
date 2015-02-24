@@ -17,7 +17,6 @@ def check_json_object(json_obj, json_structure):
     if (isinstance(json_structure, JObject)):
         keys = json_structure.get_keys()
         original_keys = json_obj.keys()
-        print 'keys', keys, 'okeys', original_keys
         keys.sort()
         original_keys.sort()
         if (keys == original_keys):
@@ -25,8 +24,8 @@ def check_json_object(json_obj, json_structure):
         else:
             key_objs = filter(lambda x: isinstance(x, JObject), keys)
             key_lists = filter(lambda x: isinstance(x, JList), keys)
-            parent_objs = map(lambda x: x.parent, key_objs)
-            parent_list = map(lambda x: x.parent, key_lists)
+            parent_objs = map(lambda x: x.parent(), key_objs)
+            parent_list = map(lambda x: x.parent(), key_lists)
             old_keys = filter(lambda x:  (not isinstance(x, JObject)) and (not isinstance(x, JList)), keys)
             base_keys = old_keys + parent_objs + parent_list
             original_keys.sort()
@@ -34,7 +33,7 @@ def check_json_object(json_obj, json_structure):
             if not (original_keys == base_keys):
                 return False
             else:
-                obj_eval = all(map(lambda x: check_json_object(json_obj[x.parent], x), key_objs))
+                obj_eval = all(map(lambda x: check_json_object(json_obj[x.parent()], x), key_objs))
                 return obj_eval
     else:
         return False
