@@ -34,7 +34,8 @@ def check_json_object(json_obj, json_structure):
                 return False
             else:
                 obj_eval = all(map(lambda x: check_json_object(json_obj[x.parent()], x), key_objs))
-                return obj_eval
+                list_eval = all(map(lambda x: check_json_array(json_obj[x.parent()], x), key_lists))
+                return obj_eval and list_eval
     else:
         return False
 
