@@ -26,6 +26,9 @@ class JList:
     def get(self):
         return self.jlist
 
+    def get_keys(self):
+        return self.jlist['keys']
+
 class JObject:
     """
     JObject should be built using a dictionary with the parameter keys
