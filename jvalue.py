@@ -42,5 +42,8 @@ class JObject:
 
     def get_keys(self):
         return self.jobject['keys']
+    
+    def parent(self):
+        return self.jobject['parent']
 
 
