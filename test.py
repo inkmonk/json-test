@@ -35,6 +35,12 @@ class TestJsonCheck(unittest.TestCase):
         jdic = json.loads('[]')
         self.assertTrue(check_json_array(jdic, jobj))
 
+    def test_listf(self):
+        """Tests a simple list"""
+        jobj = JList({'parent': 'some', 'keys': [JObject({'parent': None, 'keys': ['test1', 'test2']})]})
+        jdic = json.loads('[]')
+        self.assertFalse(check_json_array(jdic, jobj))
+
 if __name__ == '__main__':
     json_test = unittest.TestLoader().loadTestsFromTestCase(TestJsonCheck)
     testRunner = unittest.TextTestRunner()
