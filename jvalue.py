@@ -40,4 +40,7 @@ class JObject:
     def get(self):
         return self.jobject
 
+    def get_keys(self):
+        return self.jobject['keys']
+
 
