@@ -11,7 +11,7 @@ Pre-requisite
 What you need to know for using the library?
 
 There are two classes `JObject` and `JList` which are used to
-represent Objects and list in JSON.
+represent Objects and list of JSON.
 
 Let's assume you have a JSON object like this:
 
@@ -20,7 +20,6 @@ Let's assume you have a JSON object like this:
   "name" : "Joe",
   "age" : 12
 }
-
 ````
 You have to represent them using `JObject` like this:
 
@@ -38,13 +37,11 @@ will use the `parent` key. Example:
             "days" : 174
           }
 }
-
 ````
 will be represented like this:
 ````
 age = JObject({parent = "age", keys=['year','days']})
 person = JObject({parent = None, keys = ['name', age]})
-
 ````
 
 Quick Start
@@ -63,3 +60,4 @@ json_obj = JObject({parent=None, keys=['name','age']})
 check_json(json_string, json_obj) # This predicate will return True
 ````
 
+For more working examples see `test.py`.
