@@ -1,52 +1,28 @@
-class JsonTestException(ValueError):
-    '''
-    Custom class for exception
-    '''
-
-class JValue:
-
-    def __init__(self, jvalue):
-        self.jvalue = jvalue
-
-    def get(self):
-        return self.jvalue
-
 class JList:
+    """
+    Represents JSON list
+    """
 
-    def __init__(self, jlist):
-        self.jlist = self.validate_jlist(jlist)
-
-    def validate_jlist(self, data):
-        keys = data.keys()
-        if not ('parent' in keys and 'keys' in keys):
-            raise JsonTestException('Invalid JList construction')
-        else:
-            return data
-        
-    def get(self):
-        return self.jlist
+    def __init__(self, keys, parent = None):
+        self.parent = parent
+        self.keys = keys
 
     def get_keys(self):
-        return self.jlist['keys']
+        return self.keys
+
 
 class JObject:
     """
-    JObject should be built using a dictionary with the parameter keys
-    {parent: None, keys: []}. The keys parameter will contain the
-    object keys in it. In case it is an nested object it will contain
-    a new JObject inside it.
+    Represents JSON Object
     """
 
-    def __init__(self, jobject):
-        self.jobject = jobject
-
-    def get(self):
-        return self.jobject
+    def __init__(self, keys, parent = None):
+        self.parent = parent
+        self.keys = keys
 
     def get_keys(self):
-        return self.jobject['keys']
+        return self.keys
     
-    def parent(self):
-        return self.jobject['parent']
+
 
 
