@@ -24,11 +24,14 @@ Let's assume you have a JSON object like this:
 You have to represent them using `JObject` like this:
 
 ````
-person = JObject({parent = None, keys=['name', 'age']})
+person = JObject(keys=['name', 'age'])
+````
+Or
+````
+person = JObject(['name', 'age'])
 ````
 
-Note how the `parent` is `None` there. In case of a nested JSON, we
-will use the `parent` key. Example:
+Example for a Nested Object in JSON:
 ````
 {
   "name" : "Joe",
@@ -40,8 +43,8 @@ will use the `parent` key. Example:
 ````
 will be represented like this:
 ````
-age = JObject({parent = "age", keys=['year','days']})
-person = JObject({parent = None, keys = ['name', age]})
+age = JObject(parent = "age", keys=['year','days'])
+person = JObject(keys = ['name', age])
 ````
 
 Quick Start
@@ -55,7 +58,7 @@ json_string = """
   "age" : 24
 }
 """
-json_obj = JObject({parent=None, keys=['name','age']})
+json_obj = JObject(['name','age'])
 
 check_json(json_string, json_obj) # This predicate will return True
 ````
