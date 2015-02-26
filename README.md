@@ -41,7 +41,7 @@ Example for a Nested Object in JSON:
           }
 }
 ````
-will be represented like this:
+which will be represented like this:
 ````
 age = JObject(parent = "age", keys=['year','days'])
 person = JObject(keys = ['name', age])
