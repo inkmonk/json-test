@@ -5,6 +5,11 @@ A python library for assisting you in writing tests against a JSON
 structure. The library concentrates on the shape of the JSON structure
 rather than the actual content in it.
 
+Installation
+-------------
+
+`pip install json_test`
+
 Pre-requisite
 --------------
 
