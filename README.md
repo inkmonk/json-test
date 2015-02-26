@@ -50,7 +50,7 @@ person = JObject(keys = ['name', age])
 Quick Start
 ------------
 ````
-from json_check import *
+from json_test import *
 
 json_string = """
 {
